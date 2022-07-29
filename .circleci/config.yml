@@ -72,7 +72,7 @@ jobs:
           name: front-end scan
           command: |
             cd frontend
-            npm cache clean
+            npm cache verify
             rm -rf node_modules
             npm install
             npm i
