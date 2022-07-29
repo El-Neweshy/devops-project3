@@ -68,8 +68,11 @@ jobs:
   test-frontend:
     docker:
       - image: circleci/node:13.8.0
+    
     steps:
       - checkout
+      - restore_cache:
+          keys: [frontend-build]
       - run: npm i
       - run: npm run test
                 
@@ -78,8 +81,10 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - restore_cache:
+          keys: [backnd-build]
       - run: npm i
-      - run: npm run lint
+      - run: npm run test
             
   scan-frontend:
     docker:
@@ -88,7 +93,8 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-build]
-      # Your job code here
+      - run: npm i
+      - run: npm run lint
 
   scan-backend:
     docker:
@@ -97,7 +103,8 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-build]
-      # Your job code here
+      - run: npm i
+      - run: npm run lint
 
   deploy-infrastructure:
     docker:
