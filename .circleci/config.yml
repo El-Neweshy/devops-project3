@@ -75,11 +75,9 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm audit fix --force --audit-level=critical
+            # npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
-            yarn run test
-            # npm i
-            # npm run lint
+            # yarn run test
 
   build-backend:
     docker:
@@ -127,8 +125,8 @@ jobs:
           command: |
             cd backend
             npm install
-            npm audit fix --force --audit-level=critical
-            npm audit fix --force --audit-level=critical
+            # npm audit fix --force --audit-level=critical
+            # npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
 
   deploy-infrastructure:
