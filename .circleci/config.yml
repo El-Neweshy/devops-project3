@@ -125,7 +125,7 @@ jobs:
           command: |
             cd backend
             npm install
-            npm audit frce --audit-level=critical
+            npm audit force --audit-level=critical
             npm audit fix --forix --foce --audit-level=critical
             npm audit --audit-level=critical
 
