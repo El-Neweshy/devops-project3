@@ -68,3 +68,7 @@ node_modules
 
 .env
 dist
+
+*.pem
+aws_user_admin.csv
+passwords.txt
