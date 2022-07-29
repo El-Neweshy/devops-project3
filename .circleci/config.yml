@@ -36,6 +36,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - restore_cache:
+          keys: [frontend-build]
       - run:
           name: Build front-end
           command: |
@@ -72,9 +74,9 @@ jobs:
           name: front-end scan
           command: |
             cd frontend
-            # pm cache clean --force
-            # rm -rf node_modules
-            # npm install
+            npm install
+            npm audit fix --force --audit-level=critical
+            npm audit --audit-level=critical
             yarn run test
             # npm i
             # npm run lint
@@ -84,6 +86,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: Back-end build
           command: |
@@ -122,8 +126,10 @@ jobs:
           name: back-end scan
           command: |
             cd backend
-            npm i
-            npm run lint
+            npm install
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
+            npm audit --audit-level=critical
 
   deploy-infrastructure:
     docker:
@@ -303,11 +309,11 @@ workflows:
           requires: [build-backend]
       - scan-frontend:
           requires: [build-frontend]
-      # - deploy-infrastructure:
-      #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-      #     filters:
-      #       branches:
-      #         only: [master]
+      - deploy-infrastructure:
+          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          filters:
+            branches:
+              only: [master]
       # - configure-infrastructure:
       #     requires: [deploy-infrastructure]
       # - run-migrations:
