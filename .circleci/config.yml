@@ -75,8 +75,9 @@ jobs:
             # pm cache clean --force
             # rm -rf node_modules
             # npm install
-            npm i
-            npm run lint
+            yarn lint
+            # npm i
+            # npm run lint
 
   build-backend:
     docker:
