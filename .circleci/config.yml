@@ -99,7 +99,7 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - amazon/aws-cli
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
@@ -166,7 +166,7 @@ jobs:
 
   deploy-frontend:
     docker:
-      - amazon/aws-cli
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
@@ -228,7 +228,7 @@ jobs:
 
   cloudfront-update:
     docker:
-      - amazon/aws-cli
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run:
