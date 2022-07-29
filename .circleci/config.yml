@@ -75,7 +75,7 @@ jobs:
             # pm cache clean --force
             # rm -rf node_modules
             # npm install
-            yarn lint
+            yarn fix
             # npm i
             # npm run lint
 
