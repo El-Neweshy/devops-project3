@@ -2,7 +2,7 @@ version: 2.1
 
 commands:
   install-awscli:
-    descriptoin: install awscli v2
+    description: install awscli v2
     steps:
       - run:
           name: install awscli v2
