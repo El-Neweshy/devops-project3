@@ -205,10 +205,10 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - install-ansible
+      # - install-ansible
       - add_ssh_keys:
           fingerprints: ["cb:c8:ad:5a:d7:09:65:e2:31:92:ad:28:83:1b:1e:d2"]
       - attach_workspace:
@@ -223,6 +223,7 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
+      
       - destroy-environment     
 
   run-migrations:
