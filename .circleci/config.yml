@@ -232,7 +232,7 @@ jobs:
             command: |
               if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt 
               then
-                curl https://kvdb.10/$(KVDB_BUCKET}/migration_${CIRCLE WORKFLOW ID:0:7} -d '1'
+                curl https://kvdb.10/${KVDB_BUCKET}/migration_${CIRCLE WORKFLOW ID:0:7} -d '1'
               fi
         - destroy-environment
         - revert-migrations
