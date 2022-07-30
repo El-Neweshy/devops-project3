@@ -39,6 +39,6 @@
 
 
   roles:
-    # - deploy
+    - deploy
     - configure-server
     - configure-prometheus-node-exporter
