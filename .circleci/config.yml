@@ -266,7 +266,7 @@ jobs:
           name: Get backend url
           command: |
             BACKEND PUBLIC_IP=$(aws ec2 describe-instances\
-              --filters "Name=tag:Name, Values=backend-${CIRCLE WORKFLOW _ID:0:7)" \
+              --filters "Name=tag:Name, Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text)
           
@@ -285,10 +285,10 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: cimg/base:stable
     steps:
       - checkout
-      # - install-ansible
+      - install-ansible
       - install-nodejs
       - add_ssh_keys:
           fingerprints: ["cb:c8:ad:5a:d7:09:65:e2:31:92:ad:28:83:1b:1e:d2"]
