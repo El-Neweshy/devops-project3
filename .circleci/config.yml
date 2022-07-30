@@ -254,6 +254,7 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
       - checkout
+      - install-awscli
       # - install-nodejs
       - restore_cache:
           keys: [frontend-build]
@@ -265,7 +266,7 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            BACKEND PUBLIC_IP=$(aws ec2 describe-instances\
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances\
               --filters "Name=tag:Name, Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text)
@@ -290,16 +291,17 @@ jobs:
       - checkout
       - install-ansible
       - install-nodejs
+      - install-awscli
       - add_ssh_keys:
           fingerprints: ["cb:c8:ad:5a:d7:09:65:e2:31:92:ad:28:83:1b:1e:d2"]
       - attach_workspace:
           at: ~/
       - restore_cache:
           keys: [backend-build]
-      - run:
-          name: update ansible
-          command: |
-            apk add --update ansible
+      # - run:
+      #     name: update ansible
+      #     command: |
+      #       apk add --update ansible
       - run:
           name: Install dependencies
           command: |
