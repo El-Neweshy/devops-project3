@@ -205,9 +205,10 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: amazon/aws-cli
     steps:
       - checkout
+      - install-ansible
       - add_ssh_keys:
           fingerprints: ["cb:c8:ad:5a:d7:09:65:e2:31:92:ad:28:83:1b:1e:d2"]
       - attach_workspace:
