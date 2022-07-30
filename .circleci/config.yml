@@ -14,6 +14,7 @@ commands:
   install-ansible:
     description: install ansible
     steps:
+      # - run: apt-get install -y sudo
       - run:
           name: install ansible
           command: |
@@ -250,10 +251,10 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: cimg/node:13.8.0
     steps:
       - checkout
-      - install-nodejs
+      # - install-nodejs
       - restore_cache:
           keys: [frontend-build]
       - run:
@@ -284,10 +285,10 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - install-ansible
+      # - install-ansible
       - install-nodejs
       - add_ssh_keys:
           fingerprints: ["cb:c8:ad:5a:d7:09:65:e2:31:92:ad:28:83:1b:1e:d2"]
@@ -295,6 +296,10 @@ jobs:
           at: ~/
       - restore_cache:
           keys: [backend-build]
+      - run:
+          name: update ansible
+          command: |
+            apk add --update ansible
       - run:
           name: Install dependencies
           command: |
