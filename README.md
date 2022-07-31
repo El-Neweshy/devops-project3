@@ -1,5 +1,4 @@
 ### Instructions
-
 * [Selling CI/CD](instructions/0-selling-cicd.md)
 * [Getting Started](instructions/1-getting-started.md)
 * [Deploying Working, Trustworthy Software](instructions/2-deploying-trustworthy-code.md)
@@ -7,7 +6,6 @@
 * [Turn Errors into Sirens](instructions/4-turn-errors-into-sirens.md)
 
 ### Project Submission
-
 For your submission, please submit the following:
 
 - A text file named `urls.txt` including:
